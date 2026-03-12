@@ -25,8 +25,8 @@ namespace SDMproject.Tournaments
 
         public Tournament(GameType gameType, IEnumerable<string> teams, int numTeamsInMatch = 2, bool randomStageMatches = false)
         {
-            if (teams.Count() < 2)
-                throw new ArgumentException("Tournament should have at least two teams.");
+            if (teams.Count() < numTeamsInMatch)
+                throw new ArgumentException("Not enough teams in the tournament.");
 
             game = gameType;
 
@@ -73,7 +73,7 @@ namespace SDMproject.Tournaments
             {
                 if (!victors.Contains(team))
                 {
-                    RemainingTeams.Remove(team.Team);
+                    _remainingTeams.Remove(team.Team);
                     eliminatedTeams.Add(team.Team);
                 }
             }
@@ -92,7 +92,7 @@ namespace SDMproject.Tournaments
                 }
             }
 
-            return $"Team{(eliminatedTeams.Count > 1 ? "s" : "")} {eliminatedTeams} have been eliminated.{endInfo}";
+            return $"Team{(eliminatedTeams.Count > 1 ? "s" : "")}: {eliminatedTeams} have been eliminated.{endInfo}";
         }
 
         private List<List<string>> DetermineStageMatches()
