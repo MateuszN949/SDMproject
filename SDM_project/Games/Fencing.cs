@@ -9,21 +9,28 @@ using System.Threading.Tasks;
 
 namespace SDMproject.Games
 {
-    internal class Fencing(IEnumerable<TeamScore> teams) : IGame
+    internal class Fencing : IGame
     {
         public string Name => "Fencing";
-        public ImmutableList<TeamScore> Teams { get; } = [.. teams];
+        public ImmutableList<TeamScore> Teams { get; }
 
-        public IReadOnlyList<int> DeterminePlacing()
+        public Fencing(IEnumerable<TeamScore> teams)
         {
-            //...
-            throw new NotImplementedException();
+            if (teams.Count() != 2)
+                throw new ArgumentException("Fencing should have exactly two teams.");
+
+            Teams = [.. teams];
         }
 
-        public string DetermineVictor()
+        public IReadOnlyList<TeamScore> DetermineVictors()
         {
-            //...
-            throw new NotImplementedException();
+            int maxScore = Teams.Max(t => t.Score);
+            return [.. Teams.Where(t => t.Score == maxScore)];
+        }
+
+        public IReadOnlyList<TeamScore> DeterminePlacing()
+        {
+            return [.. Teams.OrderByDescending(t => t.Score)];
         }
     }
 }

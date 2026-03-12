@@ -14,7 +14,7 @@ namespace SDMproject.Core.Interfaces
         string Name { get; }
         ImmutableList<TeamScore> Teams { get; }
 
-        public string DetermineVictor();
-        public IReadOnlyList<int> DeterminePlacing();
+        public IReadOnlyList<TeamScore> DetermineVictors();
+        public IReadOnlyList<TeamScore> DeterminePlacing();
     }
 }
