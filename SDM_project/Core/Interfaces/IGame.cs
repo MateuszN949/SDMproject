@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDMproject.Core.Interfaces
 {
-    internal interface IGame
+    public interface IGame
     {
         //...
     }
