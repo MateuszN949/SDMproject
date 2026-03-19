@@ -6,15 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Maybe change into an abstract class?
 namespace SDMproject.Core.Interfaces
 {
     internal interface IGame
     {
-        string Name { get; }
-        ImmutableList<TeamScore> Teams { get; }
-
-        public IReadOnlyList<TeamScore> DetermineVictors();
-        public IReadOnlyList<TeamScore> DeterminePlacing();
+        //...
     }
 }

@@ -11,26 +11,6 @@ namespace SDMproject.Games
 {
     internal class Football : IGame
     {
-        public string Name => "Football";
-        public ImmutableList<TeamScore> Teams { get; }
-
-        public Football(IEnumerable<TeamScore> teams)
-        {
-            if (teams.Count() != 2)
-                throw new ArgumentException("Football should have exactly two teams.");
-
-            Teams = [.. teams];
-        }
-
-        public IReadOnlyList<TeamScore> DetermineVictors()
-        {
-            int maxScore = Teams.Max(t => t.Score);
-            return [.. Teams.Where(t => t.Score == maxScore)];
-        }
-
-        public IReadOnlyList<TeamScore> DeterminePlacing()
-        {
-            return [.. Teams.OrderByDescending(t => t.Score)];
-        }
+        //...
     }
 }
